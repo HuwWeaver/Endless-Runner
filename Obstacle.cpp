@@ -6,9 +6,9 @@ Obstacle::Obstacle(Texture2D spriteSheet)
     spriteRect = {0, 0, static_cast<float>(texture.width/8), static_cast<float>(texture.height/8)};
 }
 
-void Obstacle::SetPosition(int winWidth, int winHeight)
+void Obstacle::SetInitialPosition(int winWidth, int winHeight)
 {
-    pos = {static_cast<float>(winWidth + 200), static_cast<float>(winHeight - texture.height/8)};
+    pos = {static_cast<float>(winWidth + 200), static_cast<float>((winHeight - texture.height/8) + GetRandomValue(-5, 10))};
 }
 
 void Obstacle::tick(float deltaTime)
@@ -16,7 +16,16 @@ void Obstacle::tick(float deltaTime)
     pos.x += speed * deltaTime;
     if(pos.x <= -100) SetActive(false);
 
-    //Update running time
+    //Vertical bob animation
+    pos.y += bobSpeed * deltaTime;
+    bobRunningTime += deltaTime;
+    if(bobRunningTime >= bobUpdateTime)
+    {
+        bobRunningTime = 0.0;
+        bobSpeed = -bobSpeed;
+    }
+
+    //Sprite Animation
     runningTime += deltaTime;
     if(runningTime >= updateTime)
     {

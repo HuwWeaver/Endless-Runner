@@ -7,7 +7,7 @@ class Obstacle
 {
 public:
     Obstacle(Texture2D spriteSheet);
-    void SetPosition(int winWidth, int winHeight);
+    void SetInitialPosition(int winWidth, int winHeight);
     virtual void tick(float deltaTime);
     Rectangle GetCollisionRect() {return collisionRect;};
     Vector2 GetPos() {return pos;};
@@ -19,6 +19,7 @@ protected:
     Rectangle spriteRect{};
     Vector2 pos{};
 
+    //Sprite Animation
     int xFrame{0}, yFrame{0};
     int maxXFrame{7};
     int maxYFrame{7};
@@ -29,6 +30,11 @@ protected:
     float pad{50};
     Rectangle collisionRect{};
     bool  active{false};
+
+    //Vertical Bob Animation
+    float bobRunningTime{0.0};
+    float bobUpdateTime{1.0f};
+    int bobSpeed{-10};
 
 };
 

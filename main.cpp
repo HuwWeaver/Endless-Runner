@@ -27,7 +27,7 @@ int main ()
 
     for(int i =0; i < sizeOfNebulae; i++)
     {
-        nebulaePool[i].SetPosition(windowDimensions[0], windowDimensions[1]);
+        nebulaePool[i].SetInitialPosition(windowDimensions[0], windowDimensions[1]);
     }
     
     //Scarfy variables
@@ -87,7 +87,7 @@ int main ()
                     {
                         //Spawn inactive obstacle and stop searching
                         nebulaePool[i].SetActive(true);
-                        nebulaePool[i].SetPosition(windowDimensions[0], windowDimensions[1]);
+                        nebulaePool[i].SetInitialPosition(windowDimensions[0], windowDimensions[1]);
                         break;
                     }
                 }
